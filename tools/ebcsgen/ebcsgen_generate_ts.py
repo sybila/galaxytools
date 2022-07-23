@@ -5,24 +5,6 @@ from eBCSgen.Parsing.ParseBCSL import Parser, load_TS_from_json
 from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.UnspecifiedParsingError import UnspecifiedParsingError
 
-"""
-usage: GenerateTS.py [-h] --model MODEL --output OUTPUT --direct DIRECT
-                     [--transition_file TRANSITION_FILE] [--max_time MAX_TIME]
-                     [--max_size MAX_SIZE] [--bound BOUND]
-
-Transition system generating
-
-required arguments:
-  --model MODEL
-  --output OUTPUT
-  --direct DIRECT
-
-optional arguments:
-  --transition_file TRANSITION_FILE
-  --max_time MAX_TIME
-  --max_size MAX_SIZE
-  --bound BOUND
-"""
 
 args_parser = argparse.ArgumentParser(description='Transition system generating')
 
