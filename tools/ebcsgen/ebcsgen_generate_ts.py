@@ -1,9 +1,10 @@
 import argparse
-import numpy as np
 
-from eBCSgen.Parsing.ParseBCSL import Parser, load_TS_from_json
 from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.UnspecifiedParsingError import UnspecifiedParsingError
+from eBCSgen.Parsing.ParseBCSL import Parser, load_TS_from_json
+
+import numpy as np
 
 
 args_parser = argparse.ArgumentParser(description='Transition system generating')
@@ -34,7 +35,9 @@ model_str = open(args.model, "r").read()
 model = model_parser.parse(model_str)
 if model.success:
     if eval(args.direct):
-        ts = model.data.generate_direct_transition_system(args.max_time, args.max_size, args.bound)
+        ts = model.data.generate_direct_transition_system(args.max_time,
+                                                          args.max_size,
+                                                          args.bound)
         ts.change_to_vector_backend()
     else:
         vm = model.data.to_vector_model(args.bound)
