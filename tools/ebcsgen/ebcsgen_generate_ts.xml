@@ -1,4 +1,4 @@
-<tool id="TransitionSystemGenerator" name="Transition System generator" version="@TOOL_VERSION@+galaxy0">
+<tool id="eBCSgen_generate_transition_system" name="eBCSgen - TS generator" version="@TOOL_VERSION@+galaxy0">
     <description>- generate transition system of the given model</description>
     <macros>
         <import>macros.xml</import>
@@ -55,6 +55,16 @@
 
     <tests>
         <test>
+            <param name="model" value="simple.bcsl.model" ftype="bcsl.model"/>
+            <output name="output" ftype="bcsl.ts">
+                <assert_contents>
+                    <has_text text="nodes"/>
+                    <has_text text="edges"/>
+                    <has_text text="ordering"/>
+                    <has_text text="initial"/>
+                    <has_n_lines n="98" />
+                </assert_contents>
+            </output>
         </test>
     </tests>
 </tool>
