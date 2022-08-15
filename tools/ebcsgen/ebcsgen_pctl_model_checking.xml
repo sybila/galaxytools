@@ -1,0 +1,31 @@
+<tool id="ModelChecking" name="PCTL Model Checking" version="1.0.0_galaxy0">
+    <description>- explicit PCTL model checking of given model</description>
+
+    <requirements>
+        <container type="docker">sybila/ebcsgen:latest</container>
+    </requirements>
+
+    <options sanitize="False"/>
+    <command>python3 ${__tool_directory__}/ebcsgen_pctl_model_checking.py
+        --transition_file '$transition_file'
+        --output '$output'
+        --formula '$formula'
+    </command>
+
+    <inputs>
+        <param format="bcsl.ts" name="transition_file" type="data" label="Computed Transition system"/>
+        <param name="formula" type="text" label="PCTL formula">
+            <validator type="empty_field"/>
+        </param>
+    </inputs>
+
+    <outputs>
+        <data format="storm.check" name="output"/>
+    </outputs>
+
+    <tests>
+        <test>
+        </test>
+    </tests>
+
+</tool>
