@@ -1,0 +1,13 @@
+owner: sybila
+remote_repository_url: "https://github.com/sybila/galaxytools/tree/master/tools/ebcsgen"
+homepage_url: "https://github.com/sybila/eBCSgen"
+categories:
+  - Systems Biology
+repositories:
+  recetox_aplcms_unsupervised:
+    description: "Generate transition system of the given BCSL model."
+    include:
+      - ebcsgen_generate_ts.xml
+      - ebcsgen_generate_ts.py
+      - test-data/simple.bcsl.model
+      - macros.xml
