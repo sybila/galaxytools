@@ -2,7 +2,7 @@ name: Galaxy Tool Linting and Tests for push and PR
 on: [push, pull_request]
 env:
   GALAXY_FORK: galaxyproject
-  GALAXY_BRANCH: release_22.01
+  GALAXY_BRANCH: dev
   MAX_CHUNKS: 4
   MAX_FILE_SIZE: 1M
 concurrency:
@@ -149,7 +149,7 @@ jobs:
     - name: Install flake8
       run: pip install flake8 flake8-import-order
     - name: Flake8
-      run: echo '${{ needs.setup.outputs.repository-list }}' | xargs -d '\n' flake8 --output-file pylint_report.txt --tee
+      run: echo '${{ needs.setup.outputs.repository-list }}' | xargs -d '\n' flake8 --max-line-length=127 --output-file pylint_report.txt --tee
     - uses: actions/upload-artifact@v2
       if: ${{ failure() }}
       with:
