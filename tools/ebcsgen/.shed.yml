@@ -1,0 +1,13 @@
+owner: sybila
+remote_repository_url: "https://github.com/sybila/galaxytools/tree/master/tools/ebcsgen"
+homepage_url: "https://github.com/sybila/eBCSgen"
+categories:
+  - Systems Biology
+repositories:
+  ebcsgen_pctl_model_checking:
+    description: "Explicit PCTL model checking of given transition system."
+    include:
+      - ebcsgen_pctl_model_checking.xml
+      - ebcsgen_pctl_model_checking.py
+      - test-data
+      - macros.xml

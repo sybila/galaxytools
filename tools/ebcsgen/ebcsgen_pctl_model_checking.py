@@ -16,14 +16,8 @@ optional = args_parser.add_argument_group('optional arguments')
 required.add_argument('--transition_file', required=True)
 required.add_argument('--output', type=str, required=True)
 required.add_argument('--formula', type=str, required=True)
-optional.add_argument('--local_storm', nargs="?", const=True)
 
 args = args_parser.parse_args()
-
-if args.local_storm:
-    local_storm = True
-else:
-    local_storm = False
 
 ts = load_TS_from_json(args.transition_file)
 

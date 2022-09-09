@@ -1,11 +1,13 @@
-<tool id="ModelChecking" name="PCTL Model Checking" version="1.0.0_galaxy0">
-    <description>- explicit PCTL model checking of given model</description>
-
+<tool id="eBCSgen_PCTL_model_checking" name="eBCSgen - PCTL model checking" version="@TOOL_VERSION@_galaxy0">
+    <description>- explicit PCTL model checking of transition system</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="creator"/>
     <requirements>
-        <container type="docker">sybila/ebcsgen:latest</container>
+        <container type="docker">sybila/ebcsgen:v@TOOL_VERSION@</container>
     </requirements>
 
-    <options sanitize="False"/>
     <command>python3 ${__tool_directory__}/ebcsgen_pctl_model_checking.py
         --transition_file '$transition_file'
         --output '$output'
