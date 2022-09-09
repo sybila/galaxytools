@@ -4,7 +4,7 @@ homepage_url: "https://github.com/sybila/eBCSgen"
 categories:
   - Systems Biology
 repositories:
-  recetox_aplcms_unsupervised:
+  ebcsgen_generate_transition_system:
     description: "Generate transition system of the given BCSL model."
     include:
       - ebcsgen_generate_ts.xml
