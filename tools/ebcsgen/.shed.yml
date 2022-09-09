@@ -9,5 +9,5 @@ repositories:
     include:
       - ebcsgen_generate_ts.xml
       - ebcsgen_generate_ts.py
-      - test-data
+      - test-data/simple.bcsl.model
       - macros.xml

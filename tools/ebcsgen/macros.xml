@@ -14,10 +14,4 @@
                 name="SYBILA MUNI" />
         </creator>
     </xml>
-
-    <xml name="generate_ts_advanced">
-        <param name="max_time" min="0" type="float" value=""
-               label="Maximal computation time (in seconds) [optional]" optional="true"/>
-        <param name="max_size" min="1" type="integer" value="" label="Maximal TS size [optional]" optional="true"/>
-    </xml>
 </macros>

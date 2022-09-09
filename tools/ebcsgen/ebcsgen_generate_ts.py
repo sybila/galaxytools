@@ -17,17 +17,11 @@ required.add_argument('--model', type=str, required=True)
 required.add_argument('--output', type=str, required=True)
 required.add_argument('--direct', required=True)
 
-optional.add_argument('--transition_file')
 optional.add_argument('--max_time', type=float, default=np.inf)
 optional.add_argument('--max_size', type=float, default=np.inf)
 optional.add_argument('--bound', type=int, default=None)
 
 args = args_parser.parse_args()
-
-if args.transition_file and args.transition_file != 'None':
-    ts = load_TS_from_json(args.transition_file)
-else:
-    ts = None
 
 model_parser = Parser("model")
 model_str = open(args.model, "r").read()
@@ -41,7 +35,7 @@ if model.success:
         ts.change_to_vector_backend()
     else:
         vm = model.data.to_vector_model(args.bound)
-        ts = vm.generate_transition_system(ts, args.max_time, args.max_size)
+        ts = vm.generate_transition_system(None, args.max_time, args.max_size)
     ts.save_to_json(args.output, model.data.params)
 else:
     if "error" in model.data:
