@@ -2,7 +2,7 @@ import argparse
 
 from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.UnspecifiedParsingError import UnspecifiedParsingError
-from eBCSgen.Parsing.ParseBCSL import Parser, load_TS_from_json
+from eBCSgen.Parsing.ParseBCSL import Parser
 
 import numpy as np
 
