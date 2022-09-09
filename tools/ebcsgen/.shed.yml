@@ -4,10 +4,17 @@ homepage_url: "https://github.com/sybila/eBCSgen"
 categories:
   - Systems Biology
 repositories:
+  ebcsgen_generate_transition_system:
+    description: "Generate transition system of the given BCSL model."
+    include:
+      - ebcsgen_generate_ts.xml
+      - ebcsgen_generate_ts.py
+      - test-data/simple.bcsl.model
+      - macros.xml
   ebcsgen_pctl_model_checking:
     description: "Explicit PCTL model checking of given transition system."
     include:
       - ebcsgen_pctl_model_checking.xml
       - ebcsgen_pctl_model_checking.py
-      - test-data
+      - test-data/pctl_model_checking.bcsl.ts
       - macros.xml
