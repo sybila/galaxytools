@@ -1,0 +1,77 @@
+<tool id="parasim" name="Parasim" version="@TOOL_VERSION@_galaxy0">
+  <description>for robustness analysis given SBML model and STL property</description>
+
+  <macros>
+    <import>macros.xml</import>
+  </macros>
+  <expand macro="creator"/>
+  <requirements>
+    <container type="docker">sybila/parasim:@TOOL_VERSION@</container>
+  </requirements>
+
+  <command detect_errors="exit_code"><![CDATA[
+    sh ${create_experiment} &&
+    export PARASIM_OPTS="-Xmx17179869184" &&
+    #if $full_exploration:
+    /home/galaxy/parasim-full_exploration/bin/parasim
+    #else
+    /home/galaxy/parasim-master-2.2.0/application/build/install/parasim/bin/parasim
+    #end if
+    -e 'experiment' -b -csv '$output' 
+  ]]> </command>
+
+  <configfiles>
+    <configfile name="create_experiment">
+      touch experiment &&
+      echo "sbml.file=$model_file" >> experiment &&
+      echo "stl.file=$property_file" >> experiment &&
+      echo "simulation.precision.file=$precission_file" >> experiment &&
+      echo "space.initial.file=$init_space_file" >> experiment &&
+      echo "space.simulation.file=$simul_space_file" >> experiment &&
+      echo "result.output.file=result.xml" >> experiment &&
+      echo "timeout.amount=$timeHorizon.time" >> experiment &&
+      echo "timeout.unit=$timeHorizon.time_unit" >> experiment &&
+      echo "iteration.limit=$iterations" >> experiment &&
+      echo "Experiment configuration:" &&            
+    </configfile>
+  </configfiles>
+
+  <inputs>
+    <param format="xml" name="model_file" type="data" label="SBML model file"/>
+    <param format="xml" name="property_file" type="data" label="STL property file"/>
+    <param format="xml" name="init_space_file" type="data" label="Initial space file"/>
+    <param format="xml" name="simul_space_file" type="data" label="Simulation space file"/>
+    <param format="xml" name="precission_file" type="data" label="Simulation precission file"/>
+    <param name="full_exploration" type="boolean" checked="false" label="Explore full parameter space (might take significantly more time!)"/>
+    <conditional name="timeHorizon">
+      <param name="time_unit" type="select" label="Time limit until timeout" help="When running simulation exceeds timeout, it terminates.">
+        <option value="SECONDS" >Seconds</option>
+        <option value="MINUTES" selected="true" >Minutes</option>
+        <option value="HOURS" >Hours</option>
+        <option value="DAYS" >Unlimited</option>
+      </param>
+      <when value="DAYS">
+        <param hidden="true" name="time" type="integer" min="1" value="1000" label="Amount of time"/>
+      </when>
+      <when value="HOURS">
+        <param name="time" type="integer" min="1" value="5" label="Amount of time"/>
+      </when>
+      <when value="MINUTES">
+        <param name="time" type="integer" min="1" value="10" label="Amount of time"/>
+      </when>
+      <when value="SECONDS">
+        <param name="time" type="integer" min="1" value="10" label="Amount of time"/>
+      </when>
+    </conditional>
+    <param name="iterations" type="integer" min="1" value="5" label="Iteration limit" help="Limits precision of robustness analysis method. Generally, 10 should be more than sufficient."/>
+  </inputs>
+  <outputs>
+    <data format="tsv" name="output" />
+  </outputs>
+
+  <tests>
+    <test>
+    </test>
+  </tests>
+
+</tool>
