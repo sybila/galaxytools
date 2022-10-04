@@ -21,8 +21,8 @@ repositories:
   ebcsgen_simulation:
     description: "Simulation of the given BCSL model."
     include:
-      - ebcsgen_simulation.xml
-      - ebcsgen_simulation.py
+      - ebcsgen_simulate.xml
+      - ebcsgen_simulate.py
       - test-data/repressilator.bcsl.model
       - test-data/simulation_determ.csv
       - macros.xml
