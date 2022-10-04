@@ -1,10 +1,10 @@
 import argparse
 
-from eBCSgen.Parsing.ParseBCSL import Parser
-from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors import UnspecifiedParsingError
 from eBCSgen.Errors.InvalidInputError import InvalidInputError
+from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.RatesNotSpecifiedError import RatesNotSpecifiedError
+from eBCSgen.Parsing.ParseBCSL import Parser
 
 
 args_parser = argparse.ArgumentParser(description='Simulation')
