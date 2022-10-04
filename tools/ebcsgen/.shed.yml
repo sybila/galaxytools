@@ -18,3 +18,11 @@ repositories:
       - ebcsgen_pctl_model_checking.py
       - test-data/pctl_model_checking.bcsl.ts
       - macros.xml
+  ebcsgen_simulation:
+    description: "Simulation of the given BCSL model."
+    include:
+      - ebcsgen_simulation.xml
+      - ebcsgen_simulation.py
+      - test-data/repressilator.bcsl.model
+      - test-data/simulation_determ.csv
+      - macros.xml

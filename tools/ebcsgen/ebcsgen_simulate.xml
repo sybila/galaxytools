@@ -1,4 +1,4 @@
-<tool id="eBCSgen_simulate" name="eBCSgen - simulation" version="@TOOL_VERSION@_galaxy0">
+<tool id="eBCSgen_simulate" name="eBCSgen simulation" version="@TOOL_VERSION@_galaxy0">
     <description>- simulate given model</description>
     <macros>
         <import>macros.xml</import>
