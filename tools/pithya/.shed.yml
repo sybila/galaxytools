@@ -1,0 +1,12 @@
+owner: sybila
+remote_repository_url: "https://github.com/sybila/galaxytools/tree/main/tools/pithya"
+homepage_url: "https://github.com/sybila/pithya-core"
+categories:
+  - Systems Biology
+repositories:
+  pithya:
+    description: "Computes CTL parameter synthesis of Pithya model."
+    include:
+      - pithya.xml
+      - test-data
+      - macros.xml
