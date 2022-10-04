@@ -1,6 +1,5 @@
 <tool id="parasim" name="Parasim" version="@TOOL_VERSION@_galaxy0">
-  <description>for robustness analysis given SBML model and STL property</description>
-
+  <description>robustness analysis of given SBML model and STL property</description>
   <macros>
     <import>macros.xml</import>
   </macros>
@@ -9,30 +8,39 @@
     <container type="docker">sybila/parasim:@TOOL_VERSION@</container>
   </requirements>
 
-  <command detect_errors="exit_code"><![CDATA[
+  <stdio>
+    <regex match="OutOfMemoryError" source="stderr" level="warning" description="Java GC OutOfMemoryError: result data might be incomplete or corrupt!" />
+    <regex match="out of memory" source="stderr" level="warning" description="Java GC OutOfMemoryError: result data might be incomplete or corrupt!" />
+    <regex match="ParseException" source="stderr" level="fatal" description="Error during parsing of input" />
+    <regex match="parse error" source="stderr" level="fatal" description="Error during parsing of input" />
+    <regex match="FormatException" source="stderr" level="fatal" description="Error during parsing of input" />
+    <regex match="IOException" source="stderr" level="fatal" description="IO Exception: Can't load data for experiment." />
+    <regex match="exception" source="stderr" level="fatal" description="Java Exception" />
+    <regex match="error" source="stderr" level="fatal" description="Unknown error" />
+
+    <regex match="nothing to store" level="fatal" description="Nothing to store - no output produced in specified time limit." />
+    <regex match="timeout" level="fatal" description="Computation timeout: result data might be incomplete or corrupt! Increase Time limit until timeout input." />
+    <regex match="killed" level="fatal" description="Out of memory." />
+  </stdio>
+
+  <command><![CDATA[
     sh ${create_experiment} &&
     export PARASIM_OPTS="-Xmx17179869184" &&
-    #if $full_exploration:
-    /home/galaxy/parasim-full_exploration/bin/parasim
-    #else
-    /home/galaxy/parasim-master-2.2.0/application/build/install/parasim/bin/parasim
-    #end if
-    -e 'experiment' -b -csv '$output' 
+    parasim -e 'experiment' -b -csv '$output'
   ]]> </command>
 
   <configfiles>
     <configfile name="create_experiment">
-      touch experiment &&
-      echo "sbml.file=$model_file" >> experiment &&
-      echo "stl.file=$property_file" >> experiment &&
-      echo "simulation.precision.file=$precission_file" >> experiment &&
-      echo "space.initial.file=$init_space_file" >> experiment &&
-      echo "space.simulation.file=$simul_space_file" >> experiment &&
-      echo "result.output.file=result.xml" >> experiment &&
-      echo "timeout.amount=$timeHorizon.time" >> experiment &&
-      echo "timeout.unit=$timeHorizon.time_unit" >> experiment &&
-      echo "iteration.limit=$iterations" >> experiment &&
-      echo "Experiment configuration:" &&            
+      touch experiment
+      echo "sbml.file=$model_file" >> experiment
+      echo "stl.file=$property_file" >> experiment
+      echo "simulation.precision.file=$precission_file" >> experiment
+      echo "space.initial.file=$init_space_file" >> experiment
+      echo "space.simulation.file=$simul_space_file" >> experiment
+      echo "result.output.file=result.xml" >> experiment
+      echo "timeout.amount=$time_horizon.time" >> experiment
+      echo "timeout.unit=$time_horizon.time_unit" >> experiment
+      echo "iteration.limit=$iterations" >> experiment
     </configfile>
   </configfiles>
 
@@ -42,8 +50,7 @@
     <param format="xml" name="init_space_file" type="data" label="Initial space file"/>
     <param format="xml" name="simul_space_file" type="data" label="Simulation space file"/>
     <param format="xml" name="precission_file" type="data" label="Simulation precission file"/>
-    <param name="full_exploration" type="boolean" checked="false" label="Explore full parameter space (might take significantly more time!)"/>
-    <conditional name="timeHorizon">
+    <conditional name="time_horizon">
       <param name="time_unit" type="select" label="Time limit until timeout" help="When running simulation exceeds timeout, it terminates.">
         <option value="SECONDS" >Seconds</option>
         <option value="MINUTES" selected="true" >Minutes</option>
@@ -65,12 +72,24 @@
     </conditional>
     <param name="iterations" type="integer" min="1" value="5" label="Iteration limit" help="Limits precision of robustness analysis method. Generally, 10 should be more than sufficient."/>
   </inputs>
+
   <outputs>
     <data format="tsv" name="output" />
   </outputs>
 
   <tests>
     <test>
+      <param name="model_file" value="lotkav.model.xml" ftype="xml"/>
+      <param name="property_file" value="oscil.star.formula.xml" ftype="xml"/>
+      <param name="init_space_file" value="params.init_space.xml" ftype="xml"/>
+      <param name="simul_space_file" value="base.sim_space.xml" ftype="xml"/>
+      <param name="precission_file" value="base.precision.xml" ftype="xml"/>
+      <section name="time_horizon">
+        <param name="time_unit" value="MINUTES"/>
+        <param name="time" value="30"/>
+      </section>
+      <param name="iterations" value="2"/>
+      <output name="output" value="lotkav.model.xml" ftype="tsv"/>
     </test>
   </tests>
 
