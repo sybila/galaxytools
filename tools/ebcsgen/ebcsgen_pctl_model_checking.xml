@@ -1,4 +1,4 @@
-<tool id="eBCSgen_PCTL_model_checking" name="eBCSgen - PCTL model checking" version="@TOOL_VERSION@_galaxy0">
+<tool id="eBCSgen_PCTL_model_checking" name="eBCSgen PCTL model checking" version="@TOOL_VERSION@_galaxy0">
     <description>- explicit PCTL model checking of transition system</description>
     <macros>
         <import>macros.xml</import>

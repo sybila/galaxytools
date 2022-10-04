@@ -1,4 +1,4 @@
-<tool id="eBCSgen_generate_transition_system" name="eBCSgen - transition system generator" version="@TOOL_VERSION@_galaxy0">
+<tool id="eBCSgen_generate_transition_system" name="eBCSgen transition system generator" version="@TOOL_VERSION@_galaxy0">
     <description>- generate transition system of the given model</description>
     <macros>
         <import>macros.xml</import>
