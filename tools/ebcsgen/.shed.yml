@@ -26,3 +26,10 @@ repositories:
       - test-data/repressilator.bcsl.model
       - test-data/simulation_determ.csv
       - macros.xml
+  ebcsgen_ctl_model_checking:
+    description: "Simulation of the given BCSL model."
+    include:
+      - ebcsgen_ctl_model_checking.xml
+      - ebcsgen_ctl_model_checking.py
+      - test-data/pctl_model_checking.bcsl.ts
+      - macros.xml
