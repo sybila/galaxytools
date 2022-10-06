@@ -26,3 +26,10 @@ repositories:
       - test-data/repressilator.bcsl.model
       - test-data/simulation_determ.csv
       - macros.xml
+  ebcsgen_ctl_model_checking:
+    description: "Explicit CTL model checking of given transition system."
+    include:
+      - ebcsgen_ctl_model_checking.xml
+      - ebcsgen_ctl_model_checking.py
+      - test-data/simple.bcsl.ts
+      - macros.xml
