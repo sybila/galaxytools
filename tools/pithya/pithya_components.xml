@@ -34,6 +34,11 @@
     </outputs>
 
     <tests>
+        <test>
+            <param name="input_model" value="example_components.pithya.model"/>
+            <param name="alg" value="dist"/>
+            <output name="output" file="result_components.pithya.result"/>
+        </test>
     </tests>
 
 </tool>
