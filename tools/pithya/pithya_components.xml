@@ -1,0 +1,48 @@
+<tool id="pithya_components" name="PITHYA components" version="@TOOL_VERSION@_galaxy0">
+    <description>- computes terminal components</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="creator"/>
+    <requirements>
+        <container type="docker">sybila/pithya:@TOOL_VERSION@</container>
+    </requirements>
+    <command>pithyaComponents
+        -m '$input_model'
+        --parallelism '$threads'
+        #if $cut_thrs
+            --cut-to-range
+        #end if
+        --algorithm-type 'local'
+        -ro '$output'
+        -lo 'stdout'
+    </command>
+
+    <inputs>
+        <param format="pithya.model" name="input_model" type="data" label="Pithya model file."/>
+        <param type="boolean" name="cut_thrs" checked="false" label="Cut the thresholds" 
+               help="...exceeding explicit minimum and maximum thresholds" />
+        <param name="threads" size="2" type="integer" min="1" max="32" value="2" label="Number of threads used for parallelism." />
+    </inputs>
+    
+    <outputs>
+        <data format="pithya.result" name="output" />
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="input_model" value="example_components.pithya.model"/>
+            <output name="output">
+                <assert_contents>
+                    <has_text text="results"/>
+                    <has_text text="variables"/>
+                    <has_text text="parameters"/>
+                    <has_text text="thresholds"/>
+                    <has_text text="parameter_bounds"/>
+                    <has_text text="states"/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+
+</tool>
