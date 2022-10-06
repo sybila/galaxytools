@@ -10,7 +10,7 @@ repositories:
       - pithya.xml
       - test-data
       - macros.xml
-  pithya-components:
+  pithya_components:
     description: "Computes terminal components of Pithya model."
     include:
       - pithya_components.xml
