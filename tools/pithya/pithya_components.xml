@@ -32,7 +32,16 @@
     <tests>
         <test>
             <param name="input_model" value="example_components.pithya.model"/>
-            <output name="output" file="result_components.pithya.result"/>
+            <output name="output">
+                <assert_contents>
+                    <has_text text="results"/>
+                    <has_text text="variables"/>
+                    <has_text text="parameters"/>
+                    <has_text text="thresholds"/>
+                    <has_text text="parameter_bounds"/>
+                    <has_text text="states"/>
+                </assert_contents>
+            </output>
         </test>
     </tests>
 
