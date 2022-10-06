@@ -13,17 +13,13 @@
         #if $cut_thrs
             --cut-to-range
         #end if
-        --algorithm-type '$alg'
+        --algorithm-type 'local'
         -ro '$output'
         -lo 'stdout'
     </command>
 
     <inputs>
         <param format="pithya.model" name="input_model" type="data" label="Pithya model file."/>
-        <param type="select" name="alg" label="Algortihm type">
-            <option value="local">local</option>
-            <option value="dist">dist</option>
-        </param>
         <param type="boolean" name="cut_thrs" checked="false" label="Cut the thresholds" 
                help="...exceeding explicit minimum and maximum thresholds" />
         <param name="threads" size="2" type="integer" min="1" max="32" value="2" label="Number of threads used for parallelism." />
@@ -36,7 +32,6 @@
     <tests>
         <test>
             <param name="input_model" value="example_components.pithya.model"/>
-            <param name="alg" value="dist"/>
             <output name="output" file="result_components.pithya.result"/>
         </test>
     </tests>
