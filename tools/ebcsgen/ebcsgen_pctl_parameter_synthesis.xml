@@ -62,7 +62,7 @@
                 <param name="from" value="0.05"/>
                 <param name="to" value="1.0"/>
             </repeat>
-            <output name="output" ftype="txt">s
+            <output name="output_regions" ftype="txt">
                 <assert_contents>
                     <has_text text="Region results:"/>
                 </assert_contents>
@@ -71,7 +71,7 @@
         <test>
             <param name="transition_file" value="parametrised.bcsl.ts" ftype="bcsl.ts"/>
             <param name="formula" value="P=? [F P2(active{on})::cell &gt; 0]"/>
-            <output name="output" ftype="storm.sample">
+            <output name="output_sample" ftype="storm.sample">
                 <assert_contents>
                     <has_text text="Result (initial states):"/>
                 </assert_contents>
