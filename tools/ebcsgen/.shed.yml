@@ -33,3 +33,10 @@ repositories:
       - ebcsgen_ctl_model_checking.py
       - test-data/simple.bcsl.ts
       - macros.xml
+  ebcsgen_pctl_parameter_synthesis:
+    description: "PCTL parameter synthesis of given parametric transition system."
+    include:
+      - ebcsgen_pctl_parameter_synthesis.xml
+      - ebcsgen_pctl_parameter_synthesis.py
+      - test-data/parametrised.bcsl.ts
+      - macros.xml
