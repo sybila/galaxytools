@@ -1,9 +1,9 @@
 import argparse
 
 from eBCSgen.Analysis.PCTL import PCTL
-from eBCSgen.Parsing.ParseBCSL import load_TS_from_json
 from eBCSgen.Errors.FormulaParsingError import FormulaParsingError
 from eBCSgen.Errors.InvalidInputError import InvalidInputError
+from eBCSgen.Parsing.ParseBCSL import load_TS_from_json
 from eBCSgen.Parsing.ParsePCTLformula import PCTLparser
 
 
