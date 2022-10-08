@@ -47,3 +47,11 @@ repositories:
       - ebcsgen_sbml_export.py
       - test-data/simple.bcsl.model
       - macros.xml
+  ebcsgen_static_analysis:
+    description: "Run static analysis techniques on given BCSL model."
+    include:
+      - ebcsgen_static_analysis.xml
+      - ebcsgen_static_analysis.py
+      - test-data/redundant.bcsl.model
+      - test-data/reduced.bcsl.model
+      - macros.xml
