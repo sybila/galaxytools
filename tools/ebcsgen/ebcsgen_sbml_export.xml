@@ -25,7 +25,16 @@
     <tests>
         <test>
             <param name="model" value="simple.bcsl.model" ftype="bcsl.model"/>
-            <output name="output" value="sbml_export.xml" ftype="xml"/>
+            <output name="output" ftype="xml">
+                <assert_contents>
+                    <has_text text='compartment id="cell"'/>
+                    <has_text text='name="P(S{i},T{i})::cell"'/>
+                    <has_text text='multi:speciesType multi:id="st_T"'/>
+                    <has_text text='speciesFeatureType multi:id="S_feature_type"'/>
+                    <has_text text='multi:id="P_0_S"'/>
+                    <has_n_lines n="157" delta="1"/>
+                </assert_contents>
+            </output>
         </test>
     </tests>
 
