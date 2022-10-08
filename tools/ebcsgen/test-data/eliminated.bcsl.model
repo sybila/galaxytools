@@ -1,0 +1,10 @@
+#! rules
+r2 ~ P()::cell => P()::out @ 1.0
+r1_T ~ // redundant #{1, 2} // P(T{i})::cell => P(T{a})::cell @ 1.0
+r1_X ~ // redundant #{1, 2} // P(T{i})::cell => P(T{a})::cell @ 1.0
+r1_S ~ P(S{i})::cell => P(S{a})::cell @ 1.0
+
+#! inits
+1 P(S{i},T{i})::cell
+
+#! definitions
