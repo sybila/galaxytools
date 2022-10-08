@@ -40,3 +40,10 @@ repositories:
       - ebcsgen_pctl_parameter_synthesis.py
       - test-data/parametrised.bcsl.ts
       - macros.xml
+  ebcsgen_sbml_export:
+    description: "Export given BCSL model to SBML with usage of SBML-multi package."
+    include:
+      - ebcsgen_sbml_export.xml
+      - ebcsgen_sbml_export.py
+      - test-data/simple.bcsl.model
+      - macros.xml
