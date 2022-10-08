@@ -1,9 +1,9 @@
 import argparse
 
-from eBCSgen.Parsing.ParseBCSL import Parser
-from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.ComplexParsingError import ComplexParsingError
+from eBCSgen.Errors.ModelParsingError import ModelParsingError
 from eBCSgen.Errors.UnspecifiedParsingError import UnspecifiedParsingError
+from eBCSgen.Parsing.ParseBCSL import Parser
 
 
 def save_model(model, filename):
@@ -52,4 +52,3 @@ else:
     if "error" in model.data:
         raise UnspecifiedParsingError(model.data["error"])
     raise ModelParsingError(model.data, model_str)
-    
