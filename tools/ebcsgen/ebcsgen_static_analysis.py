@@ -12,21 +12,6 @@ def save_model(model, filename):
     f.close()
 
 
-"""
-usage: StaticAnalysis.py [-h] --model MODEL --output OUTPUT --method METHOD
-                         [--complex COMPLEX]
-
-Static analysis
-
-required arguments:
-  --model MODEL
-  --output OUTPUT
-  --method METHOD
-
-optional arguments:
-  --complex COMPLEX
-"""
-
 args_parser = argparse.ArgumentParser(description='Static analysis')
 
 args_parser._action_groups.pop()
@@ -67,3 +52,4 @@ else:
     if "error" in model.data:
         raise UnspecifiedParsingError(model.data["error"])
     raise ModelParsingError(model.data, model_str)
+    

@@ -37,15 +37,36 @@
     <outputs>
         <data format="bcsl.model" name="output">
             <change_format>
-                <when input="method" value="reach" format="txt"/>
+                <when input="Method.method" value="reach" format="txt"/>
             </change_format>
         </data>
     </outputs>
 
     <tests>
         <test>
-            <param name="model" value="simple.bcsl.model" ftype="bcsl.model"/>
-            <output name="output" ftype="bcsl.ts">
+            <param name="model" value="redundant.bcsl.model" ftype="bcsl.model"/>
+            <param name="method" value="reach"/>
+            <param name="complex" value="P(S{i},T{a})::out"/>
+            <output name="output" ftype="txt">
+                <assert_contents>
+                    <has_text text="can possibly be reached in the model"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="model" value="redundant.bcsl.model" ftype="bcsl.model"/>
+            <param name="method" value="eliminate"/>
+            <output name="output" ftype="bcsl.model">
+                <assert_contents>
+                    <has_text text="r1_X ~ // redundant #{1, 2} // P(T{i})::cell => P(T{a})::cell @ 1.0"/>
+                    <has_text text="r1_T ~ // redundant #{1, 2} // P(T{i})::cell => P(T{a})::cell @ 1.0"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="model" value="redundant.bcsl.model" ftype="bcsl.model"/>
+            <param name="method" value="reduce"/>
+            <output name="output" value="reduced.bcsl.model" ftype="bcsl.model"/>
         </test>
     </tests>
 
