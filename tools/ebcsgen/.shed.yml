@@ -1,5 +1,5 @@
 owner: sybila
-remote_repository_url: "https://github.com/sybila/galaxytools/tree/master/tools/ebcsgen"
+remote_repository_url: "https://github.com/sybila/galaxytools/tree/main/tools/ebcsgen"
 homepage_url: "https://github.com/sybila/eBCSgen"
 categories:
   - Systems Biology

@@ -1,0 +1,12 @@
+owner: sybila
+remote_repository_url: "https://github.com/sybila/galaxytools/tree/main/tools/parasim"
+homepage_url: "https://github.com/sybila/parasim"
+categories:
+  - Systems Biology
+repositories:
+  parasim:
+    description: "Robustness analysis of SBML model with respect to STL property."
+    include:
+      - parasim.xml
+      - test-data
+      - macros.xml
