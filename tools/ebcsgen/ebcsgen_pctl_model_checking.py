@@ -11,7 +11,6 @@ args_parser = argparse.ArgumentParser(description='Model checking')
 
 args_parser._action_groups.pop()
 required = args_parser.add_argument_group('required arguments')
-optional = args_parser.add_argument_group('optional arguments')
 
 required.add_argument('--transition_file', required=True)
 required.add_argument('--output', type=str, required=True)
@@ -26,7 +25,7 @@ if len(ts.params) != 0:
 
 formula = PCTLparser().parse(args.formula)
 if formula.success:
-    result = PCTL.model_checking(ts, formula, storm_local=True)
+    result = PCTL.model_checking(ts, formula)
     f = open(args.output, "w")
     f.write(result.decode("utf-8"))
     f.close()
