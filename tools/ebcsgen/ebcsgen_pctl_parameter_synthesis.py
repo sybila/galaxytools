@@ -7,6 +7,14 @@ from eBCSgen.Parsing.ParseBCSL import load_TS_from_json
 from eBCSgen.Parsing.ParsePCTLformula import PCTLparser
 
 
+class FakeFile:
+    def __init__(self, content):
+        self.content = content.decode("utf-8")
+
+    def read(self):
+        return self.content
+
+
 args_parser = argparse.ArgumentParser(description='Parameter synthesis')
 
 args_parser._action_groups.pop()
@@ -43,8 +51,12 @@ if "?" not in args.formula:
 formula = PCTLparser().parse(args.formula)
 if formula.success:
     result = PCTL.parameter_synthesis(ts, formula, region)
-    f = open(args.output, "w")
-    f.write(result.decode("utf-8"))
-    f.close()
+    if "?" not in args.formula:
+        result = FakeFile(result)
+        df = PCTL.process_output(result)
+        df.to_csv(args.output, index=False)
+    else:
+        with open(args.output, "w") as f:
+            f.write(result.decode("utf-8"))
 else:
     raise FormulaParsingError(formula.data, args.formula)
