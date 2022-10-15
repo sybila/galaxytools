@@ -40,7 +40,7 @@
     </inputs>
 
     <outputs>
-        <data format="txt" name="output_regions">
+        <data format="csv" name="output_regions">
             <filter>"?" not in formula</filter>
         </data>
         <data format="storm.sample" name="output_sample">
@@ -62,11 +62,7 @@
                 <param name="from" value="0.05"/>
                 <param name="to" value="1.0"/>
             </repeat>
-            <output name="output_regions" ftype="txt">
-                <assert_contents>
-                    <has_text text="Region results:"/>
-                </assert_contents>
-             </output>
+            <output name="output_regions" value="pctl_syntheisis_regions.csv" ftype="csv"/>
         </test>
         <test>
             <param name="transition_file" value="parametrised.bcsl.ts" ftype="bcsl.ts"/>
